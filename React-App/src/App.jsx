@@ -1,30 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
-import CourseExplorer from './pages/CourseExplorer';
-import Admin from './pages/Admin';
-import CourseCreation from './pages/CourseCreation';
-import { CourseProvider } from './context/CourseContext';
+import React from 'react'
 
 function App() {
   return (
-    <CourseProvider>
-      <Router>
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<CourseExplorer />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/create" element={<CourseCreation />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </CourseProvider>
-  );
+    <div className="min-h-screen from-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          🎉 Successfully Setup!
+        </h1>
+        <p className="text-lg text-gray-600">
+          React + Vite + Tailwind CSS is ready!
+        </p>
+        <button className="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
+          Get Started
+        </button>
+      </div>
+    </div>
+  )
 }
 
-export default App;
+export default App
