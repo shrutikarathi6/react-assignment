@@ -46,7 +46,7 @@ const Sidebar = ({
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Courses</h2>
         <div className="space-y-2">
           {filteredCourses.map((course) => (
-            <div key={course.id} className="border border-gray-200 rounded-lg">
+            <div key={course.id} className="border bg-blue-100/50 border-gray-200 rounded-lg">
               {/* Course Header */}
               <button
                 onClick={() => toggleCourse(course.id)}

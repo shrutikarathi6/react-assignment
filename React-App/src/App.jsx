@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import CourseExplorer from './pages/CourseExplorer';
-// import Admin from './pages/Admin';
+import Admin from './pages/Admin';
 // import CourseCreation from './pages/CourseCreation';
 import { CourseProvider } from './context/CourseContext';
 
@@ -16,7 +16,7 @@ function App() {
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<CourseExplorer />} />
-              {/* <Route path="/admin" element={<Admin />} /> */}
+              <Route path="/admin" element={<Admin />} />
               {/* <Route path="/create" element={<CourseCreation />} /> */}
             </Routes>
           </main>
