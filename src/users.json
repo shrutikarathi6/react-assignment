@@ -1,5 +1,4 @@
-{
-  "users": [
+ [
     {
       "id": 1,
       "name": "Aditi Sharma",
@@ -72,5 +71,5 @@
       "progress": {}
     }
   ]
-}
+
 

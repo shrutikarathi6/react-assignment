@@ -1,5 +1,4 @@
-{
-  "courses": [
+[
     {
       "title": "Full Stack Web Development Bootcamp",
       "subtitle": "Master frontend and backend development",
@@ -532,4 +531,3 @@
       ]
     }
   ]
-}
