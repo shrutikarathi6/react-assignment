@@ -102,20 +102,7 @@ const ContentRenderer = ({ course, topic, subtopic, onSubtopicComplete }) => {
                 {subtopic.completed ? 'Completed ✓' : 'Mark Complete'}
               </button>
 
-              <div className="flex space-x-2">
-                <button
-                  disabled={currentSubtopicIndex === 0}
-                  className="px-3 py-2 bg-blue-600 text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700"
-                >
-                  Previous
-                </button>
-                <button
-                  disabled={currentSubtopicIndex === topic.subtopics.length - 1}
-                  className="px-3 py-2 bg-blue-600 text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700"
-                >
-                  Next
-                </button>
-              </div>
+             
             </div>
           )}
         </div>

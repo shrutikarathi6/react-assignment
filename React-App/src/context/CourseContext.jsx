@@ -16,21 +16,33 @@ export const CourseProvider = ({ children }) => {
 
   // Extract courses from the data structure
   const extractCourses = (data) => {
-    // If data has a 'courses' property, use that array
+    let coursesArray = [];
+    
     if (data && data.courses && Array.isArray(data.courses)) {
-      return data.courses;
+      coursesArray = data.courses;
+    } else if (Array.isArray(data)) {
+      coursesArray = data;
     }
-    // If data is already an array, use it directly
-    if (Array.isArray(data)) {
-      return data;
-    }
-    // Fallback to empty array
-    console.error('Invalid courses data structure:', data);
-    return [];
+    
+    // Ensure all courses, topics, and subtopics have IDs and completed status
+    return coursesArray.map((course, courseIndex) => ({
+      ...course,
+      id: course.id || courseIndex + 1,
+      topics: course.topics.map((topic, topicIndex) => ({
+        ...topic,
+        id: topic.id || (courseIndex + 1) * 100 + topicIndex + 1,
+        subtopics: topic.subtopics.map((subtopic, subtopicIndex) => ({
+          ...subtopic,
+          id: subtopic.id || (courseIndex + 1) * 1000 + (topicIndex + 1) * 100 + subtopicIndex + 1,
+          completed: subtopic.completed || false // Add default completed property
+        }))
+      }))
+    }));
   };
 
   useEffect(() => {
     const savedCourses = localStorage.getItem('learnhub-courses');
+    const savedProgress = localStorage.getItem('learnhub-progress');
     
     if (savedCourses) {
       try {
@@ -43,6 +55,25 @@ export const CourseProvider = ({ children }) => {
     } else {
       setCourses(extractCourses(coursesData));
     }
+
+    // Load progress from localStorage and merge with courses
+    if (savedProgress) {
+      try {
+        const progress = JSON.parse(savedProgress);
+        setCourses(prev => prev.map(course => ({
+          ...course,
+          topics: course.topics.map(topic => ({
+            ...topic,
+            subtopics: topic.subtopics.map(subtopic => ({
+              ...subtopic,
+              completed: progress[`${course.id}-${topic.id}-${subtopic.id}`] || false
+            }))
+          }))
+        })));
+      } catch (error) {
+        console.error('Error loading progress:', error);
+      }
+    }
   }, []);
 
   // ... rest of your context methods remain the same
@@ -54,7 +85,7 @@ export const CourseProvider = ({ children }) => {
           topic.id === topicId ? {
             ...topic,
             subtopics: topic.subtopics.map(subtopic =>
-              subtopic.id === subtopicId ? { ...subtopic, completed } : subtopic
+              subtopic.id === subtopicId ? { ...subtopic, completed:completed } : subtopic
             )
           } : topic
         )
