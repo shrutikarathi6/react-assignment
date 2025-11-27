@@ -4,7 +4,7 @@ import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import CourseExplorer from './pages/CourseExplorer';
 import Admin from './pages/Admin';
-// import CourseCreation from './pages/CourseCreation';
+import CourseCreation from './pages/CourseCreation';
 import { CourseProvider } from './context/CourseContext';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<CourseExplorer />} />
               <Route path="/admin" element={<Admin />} />
-              {/* <Route path="/create" element={<CourseCreation />} /> */}
+              <Route path="/create" element={<CourseCreation />} />
             </Routes>
           </main>
           <Footer />
